@@ -1,13 +1,18 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
+
+import initialize from './setup';
+import Logger from './logger';
 
 const app: Application = express();
 
-const PORT = 3001;
+initialize(app);
 
-app.use('/', (req: Request, res: Response): void => {
-    res.send('Hello world!');
+const PORT = process.env.PORT || 5000;
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello, World' });
 });
 
 app.listen(PORT, (): void => {
-    console.log('SERVER IS UP ON PORT:', PORT);
+  Logger.info(`Server is running on port: ${PORT}`);
 });
