@@ -1,5 +1,5 @@
 interface ErrorDetail {
-  message: string;
+  [message: string]: string;
 }
 
 export default ErrorDetail;

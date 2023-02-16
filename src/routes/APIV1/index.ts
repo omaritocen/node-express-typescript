@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
+import postRouter from './post';
+
 const router = Router();
 
-router.use('/test', (req, res, next) => {
-  res.status(200).json({ message: 'You made it ' });
-});
+router.use('/post', postRouter);
 
 export default router;

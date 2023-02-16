@@ -5,7 +5,7 @@ import nonExistingRoute from '../middleware/nonExistingRoute';
 const router = Router();
 
 // Handle routes to the first version of the API
-router.use('api/v1', apiv1);
+router.use('/api/v1', apiv1);
 
 // Handle non-existing routes
 router.use('*', nonExistingRoute);
