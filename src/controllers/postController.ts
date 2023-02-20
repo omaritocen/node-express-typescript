@@ -1,24 +1,30 @@
 import { Request, Response } from 'express';
-import { createPost, getPostById, getAllPosts } from '../services/postService';
+import IPostService from '../services/post/IPostService';
 
 class PostController {
-  async createPost(req: Request, res: Response) {
-    const { title, body } = req.body;
-    const post = await createPost(title, body);
-    return res.status(201).json(post);
+  private postService: IPostService;
+
+  constructor(postService: IPostService) {
+    this.postService = postService;
   }
 
-  async getPostById(req: Request, res: Response) {
+  createPost = async (req: Request, res: Response) => {
+    const { title, body } = req.body;
+    const post = await this.postService.createPost(title, body);
+    return res.status(201).json(post);
+  };
+
+  getPostById = async (req: Request, res: Response) => {
     const postId = req.params.id;
-    const post = await getPostById(postId);
+    const post = await this.postService.getPostById(postId);
 
     return res.status(200).json(post);
-  }
+  };
 
-  async getAllPosts(req: Request, res: Response) {
-    const posts = await getAllPosts();
+  getAllPosts = async (req: Request, res: Response) => {
+    const posts = await this.postService.getAllPosts();
     return res.status(200).json(posts);
-  }
+  };
 }
 
 export default PostController;

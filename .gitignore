@@ -5,3 +5,7 @@
 node_modules/
 dist/
 logs/
+
+# Editor and IDEs configs
+.idea/
+.vscode/
